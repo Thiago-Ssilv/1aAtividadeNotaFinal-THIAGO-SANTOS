@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Página de Contato com Validação</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: red;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            padding: 20px;
+            background-color: aliceblue;
+            text-align: center;
+        }
+
+        h1 {
+            color: red;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            text-align: left;
+        }
+
+        input,
+        textarea {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        button {
+            padding: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .feedback.success {
+            color: #4CAF50;
+        }
+
+        .feedback.error {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Formulário de Contato</h1>
+        <form id="Formcontato">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" placeholder="Digite seu Nome" name="name" required>
+
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" placeholder="Digite seu E-mail" name="email" required>
+
+            <label for="message">Mensagem:</label>
+            <textarea id="message" name="message" rows="7" required> </textarea>
+
+
+            <button type="submit">Enviar</button>
+            <p id="feedback" class="feedback"></p>
+
+            <p>© 2024 Thiago_Developer</p>
+
+        </form>
+    </div>
+    <script>
+        document.getElementById("Formcontato").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const message = document.getElementById("message").value.trim();
+            const feedback = document.getElementById("feedback");
+
+            if (name === "" || email === "" || message === "") {
+                feedback.textContent = "Por favor, preencha todos os campos."
+                feedback.className = "feedback error";
+                return;
+            }
+
+            const emailPattern = /.+@.+\..+/;
+            if (!emailPattern.test(email)) {
+                feedback.textContent = "Por favor, insira um e-mail válido.";
+                feedback.className = "feedback error";
+                return;
+            }
+
+            feedback.textContent = "Mensagem enviada com sucesso!";
+            feedback.className = "feedback success";
+
+            document.getElementById("Formcontato").reset();
+
+        });
+    </script>
+
+</body>
+
+</html>

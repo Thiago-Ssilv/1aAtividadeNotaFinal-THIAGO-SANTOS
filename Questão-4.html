@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IMC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: aliceblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+            padding: 20px;
+            background-color: blue;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        h1 {
+            color: black;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        button {
+            padding: 10px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        p {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Calculadora de IMC</h1>
+        <form id="Formimc">
+            <label for="weight">Peso (kg):</label>
+            <input type="number" id="weight" name="weight" required>
+
+            <label for="height">Altura (m):</label>
+            <input type="number" id="height" name="height" required>
+
+            <button type="button" onclick="calculaIMC()"> Calcular IMC</button>
+
+            <p id="result" class="result"></p>
+
+            <p>© 2024 Thiago_Developer</p>
+
+        </form>
+    </div>
+
+    <script>
+        function calculaIMC() {
+
+            const weight = parseFloat(document.getElementById("weight").value);
+            const height = parseFloat(document.getElementById("height").value);
+            const resultElement = document.getElementById("result");
+
+
+            if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+                resultElement.textContent = "Por favor, insira valores válidos para peso e altura.";
+                resultElement.style.color = "#e74c3c";
+                return;
+            }
+
+
+            const imc = weight / (height * height);
+
+
+
+
+            resultElement.textContent = `Seu IMC é ${imc.toFixed(2)}`;
+            resultElement.style.color = "#4CAF50";
+        }
+
+    </script>
+
+</body>
+
+</html>
